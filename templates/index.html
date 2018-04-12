@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>email validation</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        
+	</head>
+	<body>
+		<div id="wrapper">
+            <h1>Email validation with DB</h1>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+                <p id="red">{{message}}</p>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+            <p>Email address:</p>
+            <form action= "/submit" method = "post" id="form">
+                <input type="text" id="email" name="email" size = "70"/>
+                <input type="submit" id="btn" value = "Submit"/>
+            </form>
+        </div><!--end of wrapper-->
+	</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>email validation</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        
+	</head>
+	<body>
+		<div id="wrapper">
+            <h1>Email validation with DB</h1>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+                <p id="green">{{message}}</p>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+
+            <table>
+                {%for i in emails:%}
+                    <tr>
+                        <td>{{i.email}}</td>
+                        <td>{{i.created_at.month}}/{{i.created_at.day}}/{{i.created_at.year}} {{i.created_at.strftime("%-I:%M %p")}}</td>
+                        <td>
+                            <form action="/delete/{{i.email}}">
+                                <input type=submit id="delete" value="Delete"/>
+                            </form>
+                        </td>
+                    </tr>
+                {%endfor%}                                           
+                    
+                </tr>
+            </table>
+        </div><!--end of wrapper-->
+	</body>
+</html>
